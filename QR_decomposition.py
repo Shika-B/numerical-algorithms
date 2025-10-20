@@ -1,9 +1,3 @@
-"""
-Implements this algorithm:
-https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
-for computing a QR-decomposition of a rectangular (mxn)-matrix with m >= n.
-"""
-
 import numpy as np
 
 def build_householder_reflection(v, dim):
@@ -11,11 +5,15 @@ def build_householder_reflection(v, dim):
     return np.eye(dim) - 2 * v @ v.T
 
 def householder(M):
+    """
+    Implements this algorithm:
+    https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
+    for computing a QR-decomposition of a rectangular (mxn)-matrix with m >= n.
+    """
     (m, n) = M.shape
     Q = np.eye(m)
     R = M.copy()
     for i in range(n):
-        print("Iteration", i)
         dim = m - i
         column = R[i:,i]
         alpha = np.linalg.norm(column)
@@ -30,10 +28,15 @@ def householder(M):
         R = Q_i @ R
     return (Q, R)
 
+def QR(M):
+    (m, n) = M.shape
+    assert m >= n
+    return householder(M)
+
 A = np.array([
     [12, -51, 4],
     [6, 167, -68],
     [-4, 24, -41]
 ])
 
-print(householder(A))
+print(QR(A))
