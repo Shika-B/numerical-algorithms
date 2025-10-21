@@ -13,25 +13,30 @@ def tarjan_scc(adj_list):
     counter = 0
     stack = []
     scc_list = []
+
     def visit(node):
         nonlocal counter
+        
         if index[node] is not None:
             return
         stack.append(node)
         index[node] = counter
         counter += 1
+
         for n in adj_list[node]:
             if index[n] is None:
                 visit(n)
-                low[node] = min(low[node], low[n])
+                low[index[node]] = min(low[index[node]], low[index[n]])
             else:
-                low[node] = min(low[node], index[n])
-        if low[node] == index[node]:
+                low[index[node]] = min(low[index[node]], index[n])
+        
+        if low[index[node]] == index[node]:
             scc = []
             while stack and stack[-1] != node:
                 scc.append(stack.pop())
             scc.append(stack.pop())
             scc_list.append(scc)
+    
     for v in range(n):
         visit(v)        
     return scc_list
