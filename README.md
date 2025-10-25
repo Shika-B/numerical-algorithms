@@ -5,3 +5,4 @@ Current list of algorithms:
 - [QR_decomposition](./QR_decomposition.py) implements the Householder method for computing the QR decomposition of a matrix. This implementation is reasonably numerically stable, and in particular much more than the more standard Gram-Schmidt algorithm. 
 - [tarjan_scc](./tarjan_scc.py) implements Tarjan's algorithm for computing strongly connected components of a directed graph.
 - [tarjan_bridge](./tarjan_bridge.py) implements Tarjan's algorithm for computing bridges in an undirected graph. The ideas are very similar to the preceding algorithm.
+- [heap_permutations](./heap_permutations.py) implements Heap's algorithm for generating all permutations of a given sequence efficiently. 
